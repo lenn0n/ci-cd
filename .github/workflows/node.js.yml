@@ -26,15 +26,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 12.22.9
-          cache: 'npm'
+          node-version: 20.11.1
 
       - name: npm install, build and run pm2
         run: |
-          npm install
+          npm i
           cd src
           cd frontend
-          npm install
+          npm i
           npm run build
           npm run copy
           cd ..
