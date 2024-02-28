@@ -1,0 +1,28 @@
+@font-face {
+  font-family: GreycliffCF;
+  src: url(../fonts/GreycliffCF-DemiBold.ttf);
+}
+
+@font-face {
+  font-family: Hammer;
+  src: url(../fonts/HammersmithOne-Regular.ttf);
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.text_1{
+  overflow: hidden;
+  /* border-right: .15em solid orange; */
+  white-space: nowrap;
+  font-size: 1.6rem;
+  width: 0;
+  animation: typing 3s forwards;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: orange; }
+}

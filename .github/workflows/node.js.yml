@@ -31,7 +31,12 @@ jobs:
 
       - name: npm install, build and run pm2
         run: |
-          npm i
+          npm install
+          cd frontend
+          npm install
+          npm run build
+          npm run copy
+          cd ..
           pm2 stop 0
           pm2 start 0
           pm2 save
