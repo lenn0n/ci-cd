@@ -20,7 +20,9 @@ const syncTableModels = async () => {
   PaymentModel.belongsTo(LotModel, { foreignKey: 'lot_id'})
   PaymentModel.belongsTo(ProjectModel, { foreignKey: 'project_id'})
 
-  SequelizeInstance.sync()
+  SequelizeInstance.sync().then(() =>{
+    process.exit()
+  })
 }
 
 createDatabase()

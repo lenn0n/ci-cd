@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import { countAvailableUnits, destroyLot, getLotList, getOverallLot, insertLotInformation, updateLotInfo } from "@services/lot.service"
 
 const retrieveLot = async (req: Request, res: Response, next: NextFunction) => {
-  return res.status(200).json({ message: "Test only."})
   return await getLotList({})
     .then((data) => {
       res.status(200).json(data)
