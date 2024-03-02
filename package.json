@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -r tsconfig-paths/register src/app.ts",
+    "start": "ts-node -r tsconfig-paths/register src/app.ts",
+    "dev": "nodemon -r tsconfig-paths/register src/app.ts",
     "db:migrate": "ts-node src/scripts/database.migrate.ts"
   },
   "keywords": [],
