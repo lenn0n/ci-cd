@@ -15,5 +15,5 @@ app.use(cors());
 app.use("/api", routes);
 
 app.listen(process.env.SERVER_PORT, ()=> {
-  console.info(`API Server is now running on port ${process.env.SERVER_PORT}. :)`)
+  console.info(`API Server is now running on port ${process.env.SERVER_PORT}. :) Enjoy.`)
 })
