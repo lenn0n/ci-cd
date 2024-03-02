@@ -23,7 +23,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Set up Node.js Config
         uses: actions/setup-node@v3
         with:
           node-version: 20.11.1
@@ -34,3 +34,4 @@ jobs:
           pm2 stop 0
           pm2 start 0
           pm2 save
+      
