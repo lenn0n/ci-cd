@@ -148,44 +148,36 @@ or
 - Create folder for Runners (eg: /var/www/frontend) inside your virtual machine
 - Create git repo and go to 'Settings' > 'Actions' > 'Runners', follow the given instruction.
 - Setup github action workflows, /.github/workflows/node.js.yml
-name: Node.js CI
-
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: self-hosted
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 12.22.9
-          cache: 'npm'
-
-      - name: npm install, build and test
-        run: |
-          npm i
-          pm2 stop 0
-          pm2 start 0
-          pm2 save
-
+> name: Node.js CI
+>
+> on:
+>   push:
+>     branches: [ "master" ]
+>   pull_request:
+>     branches: [ "master" ]
+> 
+>   workflow_dispatch:
+> 
+> jobs:
+>   build:
+>     runs-on: self-hosted
+> 
+>     steps:
+>       - uses: actions/checkout@v3
+> 
+>       - name: Set up Node.js
+>         uses: actions/setup-node@v3
+>         with:
+>           node-version: 12.22.9
+>           cache: 'npm'
+> 
+>       - name: npm install, build and test
+>         run: |
+>           npm i
+>           pm2 stop 0
+>           pm2 start 0
+>           pm2 save
+> 
 - Install PM2 inside your VM
 sudo npm install pm2@latest -g
 
