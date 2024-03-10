@@ -1,4 +1,4 @@
-#### JMETER STRESS TESTING
+## JMETER STRESS TESTING
 
 > .\jmeter -n -t ole-config.jmx -l logs.txt
 
@@ -28,7 +28,7 @@ Add certificates in Firefox if not set:
 > HTTPS Test Script Recorder > Add > Listener > View Results Tree
 > HTTPS Test Script Recorder  > [SELECT TARGET CONTROLLER]
 
-#### KUBECTL COMMANDS
+## KUBECTL COMMANDS
 
 Enter Pod's shell:
 > kubectl exec --stdin --tty shell-demo -- /bin/bash
@@ -46,17 +46,17 @@ Copy /tmp/foo from a remote pod to /tmp/bar locally
 > kubectl cp api-php-7f48bb7997-7286l:checkout/public_html/exports/logs/api-php-7f48bb7997-7286l.csv api-php-7f48bb7997-7286l.csv
 
 
-#### TROUBLESHOOTING
+## TROUBLESHOOTING
 Enable Docker HyperVisor
 > bcdedit /set 
 
 
-#### LINUX COMMANDS
+## LINUX COMMANDS
 Change file permission:
 > chmod -R 777 /var/www
 
 
-#### CREATE SIMPLE EXPRESS SERVER IN TYPESCRIPT
+## CREATE SIMPLE EXPRESS SERVER IN TYPESCRIPT
 
 1. Install packages
 > git init
@@ -130,7 +130,7 @@ or
 > export default router;
 
 
-#### IMPLEMENTING CI/CD USING GITHUB ACTIONS 8.220.128.99
+## IMPLEMENTING CI/CD USING GITHUB ACTIONS 8.220.128.99
 - Create any instance in cloud service provider (alibaba, aws, azure)
 - Configure VM, install packages like node, npm, nginx
 - Setup VPC and enable 0.0.0.0:80
