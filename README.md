@@ -1,3 +1,40 @@
+## CREATING VM REPO (OESPH)
+Step 1: Login To SSH (via PowerShell):
+>     ssh dev@192.168.1.103
+
+Step 2: Paste the script below: 
+>     target_dir="checkout"
+>     source_dir="oleplatformv4-web"
+>     
+>     mkdir /var/www/html/dev/repository/${target_dir}
+>     cd /var/www/html/dev/repository/${target_dir}
+>     git init
+>     cp /var/www/html/dev/repository/${source_dir}/.git/config /var/www/html/dev/repository/${target_dir}/.git/config
+>     cd .git
+>     cd hooks
+>     
+>     cat > post-receive-script << EOL
+>     #!/bin/bash
+>     BRANCH="master"
+>     
+>     while read oldrev newrev ref
+>     do
+>             # only checking out the master (or whatever branch you would like to deploy)
+>             if [ "$ref" = "refs/heads/$BRANCH" ];
+>             then
+>                     echo "Ref $ref received. Deploying ${BRANCH} branch to production..."
+>                     git --work-tree=/var/www/html/dev/${target_dir}/ --git-dir=/var/www/html/dev/repository/${target_dir}/.git checkout -f $BRANCH
+>             else
+>                     echo "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
+>             fi
+>     EOL
+>     echo "Repo created: ssh://dev@192.168.1.103/var/www/html/dev/repository/${target_dir}/.git"
+>     cd ..
+
+
+
+
+
 ## JMETER STRESS TESTING
 
 > .\jmeter -n -t ole-config.jmx -l logs.txt
@@ -100,43 +137,6 @@ CREATE DATA FROM FILE
 >                   number: 30000
 >             path: /
 >             pathType: Prefix
-
-
-
-
-
-## CREATING VM REPO (OESPH)
-Step 1: Login To SSH (via PowerShell):
->     ssh dev@192.168.1.103
-
-Step 2: Paste the script below: 
->     target_dir="checkout"
->     source_dir="oleplatformv4-web"
->     
->     mkdir /var/www/html/dev/repository/${target_dir}
->     cd /var/www/html/dev/repository/${target_dir}
->     git init
->     cp /var/www/html/dev/repository/${source_dir}/.git/config /var/www/html/dev/repository/${target_dir}/.git/config
->     cd .git
->     cd hooks
->     
->     cat > post-receive-script << EOL
->     #!/bin/bash
->     BRANCH="master"
->     
->     while read oldrev newrev ref
->     do
->             # only checking out the master (or whatever branch you would like to deploy)
->             if [ "$ref" = "refs/heads/$BRANCH" ];
->             then
->                     echo "Ref $ref received. Deploying ${BRANCH} branch to production..."
->                     git --work-tree=/var/www/html/dev/${target_dir}/ --git-dir=/var/www/html/dev/repository/${target_dir}/.git checkout -f $BRANCH
->             else
->                     echo "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
->             fi
->     EOL
->     echo "Repo created: ssh://dev@192.168.1.103/var/www/html/dev/repository/${target_dir}/.git"
->     cd ..
 
 
 
