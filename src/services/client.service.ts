@@ -12,7 +12,7 @@ const getClientList = async ({ params }: any) => {
 
 type UpdateClientType = {
   fields: {},
-  client_id: number
+  client_id?: number
 }
 
 const updateClientInfo = async (payload: UpdateClientType) => {

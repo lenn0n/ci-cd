@@ -1,6 +1,11 @@
 import { Router } from "express";
 
 import { 
+  authenticateToken,
+  login
+ } from "@controllers/auth.controller";
+
+import { 
   handleCountAvailableLot, 
   updateLot, 
   insertLot, 
@@ -42,7 +47,7 @@ import {
 } from "@controllers/payment.controller";
 
 import { 
-  insertProject, 
+  insertProject,  
   removeProject, 
   retrieveProject, 
   updateProject 
@@ -50,46 +55,48 @@ import {
 
 const router = Router();
 
+router.post("/login", login)
+
 // Lot Services
-router.get("/lot", retrieveLot)
-router.put("/lot", updateLot)
-router.post("/lot", insertLot)
-router.delete("/lot", removeLot)
-router.get("/lot/available", handleCountAvailableLot)
-router.get("/lot/overall", retrieveOverallLot)
+router.get("/lot", authenticateToken, retrieveLot)
+router.put("/lot", authenticateToken, updateLot)
+router.post("/lot", authenticateToken, insertLot)
+router.delete("/lot", authenticateToken, removeLot)
+router.get("/lot/available", authenticateToken, handleCountAvailableLot)
+router.get("/lot/overall", authenticateToken, retrieveOverallLot)
 
 // Agent Services
-router.get("/agent", retrieveAgent)
-router.put("/agent", updateAgent)
-router.post("/agent", insertAgent)
-router.delete("/agent", removeAgent)
-router.get("/agent/top", getTopAgent)
-router.get("/agent/count", getAgentCount)
+router.get("/agent", authenticateToken, retrieveAgent)
+router.put("/agent", authenticateToken, updateAgent)
+router.post("/agent", authenticateToken, insertAgent)
+router.delete("/agent", authenticateToken, removeAgent)
+router.get("/agent/top", authenticateToken, getTopAgent)
+router.get("/agent/count", authenticateToken, getAgentCount)
 
 // Client Services
-router.get("/client", retrieveClient)
-router.put("/client", updateClient)
-router.post("/client", insertClient)
-router.delete("/client", removeClient)
-router.get("/client/count", getClientCount)
+router.get("/client", authenticateToken, retrieveClient)
+router.put("/client", authenticateToken, updateClient)
+router.post("/client", authenticateToken, insertClient)
+router.delete("/client", authenticateToken, removeClient)
+router.get("/client/count", authenticateToken, getClientCount)
 
 // Project Services
-router.get("/project", retrieveProject)
-router.put("/project", updateProject)
-router.post("/project", insertProject)
-router.delete("/project", removeProject)
+router.get("/project", authenticateToken, retrieveProject)
+router.put("/project", authenticateToken, updateProject)
+router.post("/project", authenticateToken, insertProject)
+router.delete("/project", authenticateToken, removeProject)
 
 // Method Services
-router.get("/method", retrieveMethod)
-router.put("/method", updateMethod)
-router.post("/method", insertMethod)
-router.delete("/method", removeMethod)
+router.get("/method", authenticateToken, retrieveMethod)
+router.put("/method", authenticateToken, updateMethod)
+router.post("/method", authenticateToken, insertMethod)
+router.delete("/method", authenticateToken, removeMethod)
 
 // Payment Services
-router.get("/payment", retrievePayment)
-router.put("/payment", updatePayment)
-router.post("/payment", insertPayment)
-router.delete("/payment", removePayment)
-router.get("/payment/collectibles", getTotalCollectibles)
+router.get("/payment", authenticateToken, retrievePayment)
+router.put("/payment", authenticateToken, updatePayment)
+router.post("/payment", authenticateToken, insertPayment)
+router.delete("/payment", authenticateToken, removePayment)
+router.get("/payment/collectibles", authenticateToken, getTotalCollectibles)
 
 export default router;
