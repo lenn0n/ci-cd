@@ -8,7 +8,7 @@ import { ClientType } from './client.defTypes';
 import { retrieveClient, updateClient, clientTypes } from './client.controller';
 
 const Queries =  {
-  Clients: {
+  GetClients: {
     type: new GraphQLList(ClientType),
     args: { client_id: { type: GraphQLInt } },
     resolve: (parent: any, args: clientTypes) => {
