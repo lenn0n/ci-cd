@@ -50,12 +50,15 @@ import {
   insertProject,  
   removeProject, 
   retrieveProject, 
-  updateProject 
+  updateProject,
+  getStatistics 
 } from "@controllers/project.controller";
 
 const router = Router();
 
 router.post("/login", login)
+
+router.get("/statistics", authenticateToken, getStatistics)
 
 // Lot Services
 router.get("/lot", authenticateToken, retrieveLot)

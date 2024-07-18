@@ -94,7 +94,57 @@ const removeProject = async (req: Request, res: Response, next: NextFunction) =>
     })
 }
 
+import { countAvailableUnits, getOverallLot } from "@services/lot.service"
+import { countClient } from "@services/client.service";
+import { countAgent, retrieveTopAgent } from "@services/agent.service";
+
+const getStatistics = async (req: Request, res: Response, next: NextFunction) => {
+  let payload = {};
+
+  if (req.query.project_id) {
+    payload = {
+      project_id: req.query.project_id
+    }
+  }
+
+  const availableUnits = await countAvailableUnits(payload)
+    .then((data: { available: number }) => {
+      return { available_units: data.available }
+    })
+    .catch((err: {}) => { })
+
+  const overAllLot = await getOverallLot({ params: payload })
+    .then((data) => {
+      return { overall_lot: data }
+    })
+    .catch((err: {}) => { })
+
+  const agentCount = await countAgent()
+    .then((data) => {
+      return { agent_count: data }
+    })
+    .catch((err: {}) => { })
+
+  const topAgent = await retrieveTopAgent()
+    .then((data) => {
+      return { top_agent: data }
+    })
+    .catch((err: {}) => { })
+
+  const clientCount = await countClient()
+    .then((data) => {
+      return { client_count: data }
+    })
+    .catch((err: {}) => { })
+
+
+  return res.status(200).json({
+    ...availableUnits, ...overAllLot, ...agentCount, ...topAgent, ...clientCount
+  })
+}
+
 export {
+  getStatistics,
   retrieveProject,
   updateProject,
   removeProject,
