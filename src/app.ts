@@ -2,6 +2,9 @@
 import express from "express"
 import routes from "@routes/api-routes"
 import cors from 'cors';
+import { 
+  authenticateToken
+ } from "@controllers/auth.controller";
 
 // GraphQL and Ruru (GUI)
 import { createHandler } from "graphql-http/lib/use/express"
@@ -21,7 +24,7 @@ app.use(cors());
 app.use("/api", routes);
 
 // Create and use the GraphQL handler.
-app.all("/graphql", createHandler({ schema }))
+app.all("/graphql", authenticateToken, createHandler({ schema }))
 
 // GraphqQL Playground UI
 app.get("/", (_req, res) => {

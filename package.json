@@ -2,7 +2,7 @@
   "name": "sequelize",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/app.ts",
     "dev": "nodemon -r tsconfig-paths/register src/app.ts",

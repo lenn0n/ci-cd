@@ -6,19 +6,19 @@ import {
   GraphQLList,
 } from 'graphql';
 
-import { Queries, Mutations } from "@graphql/fields/client/client.fields"
+import { ClientQueries, ClientMutations } from "@graphql/fields/client/client.fields"
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: { 
-    ...Queries,
+    ...ClientQueries,
   },
 })
 
 const RootMutation = new GraphQLObjectType({
   name: "RootMutation",
   fields: {
-    ...Mutations
+    ...ClientMutations
   }
 })
 

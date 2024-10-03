@@ -7,18 +7,18 @@ import {
 import { ClientType } from './client.defTypes';
 import { retrieveClient, updateClient, clientTypes } from './client.controller';
 
-const Queries =  {
-  GetClients: {
+const ClientQueries =  {
+  clients: {
     type: new GraphQLList(ClientType),
     args: { client_id: { type: GraphQLInt } },
-    resolve: (parent: any, args: clientTypes) => {
-      return retrieveClient(args)
+    resolve: async (parent: any, args: clientTypes) => {
+     return await retrieveClient(args)
     },
   }
 }
 
-const Mutations =  {
-  UpdateClient: {
+const ClientMutations =  {
+  clients: {
     type: ClientType,
     args: {
       client_id: { type: GraphQLInt },
@@ -32,6 +32,6 @@ const Mutations =  {
 }
 
 export { 
-  Queries,
-  Mutations
+  ClientQueries,
+  ClientMutations
  }

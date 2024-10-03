@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 
 const login = (req: Request, res: Response) => {
   const password = req.body.password;
-
+  console.log(password)
   if (btoa(password) !==  btoa(process.env.PASSWORD as string)){
     return res.status(401).json({ message: "Unathorized user."});
   }
